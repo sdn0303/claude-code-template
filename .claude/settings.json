@@ -1,0 +1,75 @@
+{
+  "$schema": "https://claude.ai/schemas/claude-code-settings.json",
+  "version": "1.0.0",
+  "project": {
+    "name": "project-name",
+    "description": "Project description"
+  },
+  "model": {
+    "default": "claude-sonnet-4-5-20250929",
+    "planning": "claude-opus-4-5-20251101",
+    "review": "claude-opus-4-5-20251101"
+  },
+  "tools": {
+    "allowedTools": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "Glob",
+      "Grep",
+      "TodoRead",
+      "TodoWrite"
+    ]
+  },
+  "hooks": {
+    "preCommit": [
+      ".claude/hooks/formatter.sh",
+      ".claude/hooks/protected_files.sh"
+    ]
+  },
+  "memory": {
+    "enabled": true,
+    "scope": "project"
+  },
+  "rules": {
+    "autoLoad": true,
+    "paths": [
+      ".claude/rules/*.md"
+    ]
+  },
+  "skills": {
+    "autoDiscover": true,
+    "paths": [
+      ".claude/skills/**/SKILL.md"
+    ]
+  },
+  "agents": {
+    "plan": ".claude/agents/plan.md",
+    "edit": ".claude/agents/edit.md",
+    "test": ".claude/agents/test.md",
+    "review": ".claude/agents/review.md",
+    "commit": ".claude/agents/commit.md",
+    "explore": ".claude/agents/explore.md"
+  },
+  "formatting": {
+    "lineWidth": 100,
+    "indentSize": 2,
+    "useTabs": false
+  },
+  "safety": {
+    "protectedPaths": [
+      ".env*",
+      "*.pem",
+      "*.key",
+      "**/secrets/**",
+      "**/credentials/**"
+    ],
+    "requireConfirmation": [
+      "rm -rf",
+      "DROP TABLE",
+      "DELETE FROM",
+      "TRUNCATE"
+    ]
+  }
+}
